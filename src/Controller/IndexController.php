@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +13,10 @@ class IndexController extends AbstractController
     /**
      * @Route("/")
      */
-    public function home()
+    public function home(LoggerInterface $logger)
     {
+        $logger->info('Homepage loaded');
+
         $year = random_int(0,100);
 
         $images = [
