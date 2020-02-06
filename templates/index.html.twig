@@ -29,6 +29,17 @@
         </div><!-- navbar -->
     </nav>
 </header>
+<footer class="scene">
+    <article class="content">
+        <div id="socialmedia">
+            <ul class="group">
+                <li><a href="https://twitter.com"><img class="icon" src="images/socialmedia/twitter.png" alt="icon for twitter" /></a></li>
+                <li><a href="http://www.facebook.com"><img class="icon" src="images/socialmedia/facebook.png" alt="icon for facebook" /></a></li>
+                <li><a href="http://www.youtube.com"><img class="icon" src="images/socialmedia/youtube.png" alt="icon for youtube" /></a></li>
+            </ul>
+        </div>
+    </article>
+</footer>
 <main id="wrapper">
     <div class="scene" id="welcome">
         <article class="content">
@@ -110,6 +121,14 @@
             <h1>Guest Rooms</h1>
             <p>Our guest rooms feature sumptuous classic furnishings that evoke visions of London’s rich and long-standing tradition of royalty. While our rooms are decked out in classic design, they each have a modern flair, and contain all the modern comforts expected in today’s luxury hotels. We’ve named our rooms for the notable public squares and circuses around which the West End is laid&nbsp;out.</p>
         </header>
+        {% for hotel in hotels %}
+            <article class="room fulleight" id="{{  hotel.tag }}">
+                <section class="content">
+                    <h1>{{ hotel.name }} - £{{  hotel.price }} per night</h1>
+                    <p>{{ hotel.description }}</p>
+                </section>
+            </article>
+        {% endfor %}
     </div><!-- rooms -->
     <div class="scene" id="dining">
         <article id="areadining">
@@ -161,17 +180,6 @@
         </article>
     </div><!-- attractions -->
 </main>
-<footer class="scene">
-    <article class="content">
-        <div id="socialmedia">
-            <ul class="group">
-                <li><a href="https://twitter.com"><img class="icon" src="images/socialmedia/twitter.png" alt="icon for twitter" /></a></li>
-                <li><a href="http://www.facebook.com"><img class="icon" src="images/socialmedia/facebook.png" alt="icon for facebook" /></a></li>
-                <li><a href="http://www.youtube.com"><img class="icon" src="images/socialmedia/youtube.png" alt="icon for youtube" /></a></li>
-            </ul>
-        </div>
-    </article>
-</footer>
 <script src="js/script.js"></script>
 </body>
 </html>

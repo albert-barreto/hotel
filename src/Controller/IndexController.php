@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Entity\Hotel;
 use App\Service\DateCalculator;
 use App\Service\RandomNumberGenerator;
 use Psr\Log\LoggerInterface;
@@ -24,6 +25,10 @@ class IndexController extends AbstractController
         //$year = $randomNumberGenerator->getRandomNumber();
         $year = $dateCalculator->yearsDiffrence(self::HOTEL_OPENED);
 
+        $hotels =  $this->getDoctrine()
+            ->getRepository(Hotel::class)
+            ->findAll();
+
         $images = [
             ['url' => 'images/hotel/intro_room.jpg', 'class' => ''],
             ['url' => 'images/hotel/intro_pool.jpg', 'class' => ''],
@@ -33,7 +38,7 @@ class IndexController extends AbstractController
         ];
 
         return $this->render('index.html.twig',
-            ['year' => $year, 'images' => $images]
+            ['year' => $year, 'images' => $images, 'hotels' => $hotels]
         );
     }
 }
