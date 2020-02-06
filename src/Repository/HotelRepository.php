@@ -19,6 +19,25 @@ class HotelRepository extends ServiceEntityRepository
         parent::__construct($registry, Hotel::class);
     }
 
+    public function findAllBelowPrice(float $price): ?array
+    {
+//        return $this->createQueryBuilder('h')
+//            ->andWhere('h.price < :price')
+//            ->setParameter('price', $price)
+//            ->orderBy('h.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->getQuery()
+//            ->getResult();
+        $entityManager = $this->getEntityManager();
+        return $entityManager->createQuery(
+            'SELECT h FROM App\Entity\Hotel h 
+            WHERE h.price < :price
+            ORDER BY h.id ASC'
+        )
+            ->setParameter('price', $price)
+            ->execute();
+    }
+
     // /**
     //  * @return Hotel[] Returns an array of Hotel objects
     //  */

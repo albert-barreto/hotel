@@ -27,7 +27,7 @@ class IndexController extends AbstractController
 
         $hotels =  $this->getDoctrine()
             ->getRepository(Hotel::class)
-            ->findAll();
+            ->findAllBelowPrice(750);
 
         $images = [
             ['url' => 'images/hotel/intro_room.jpg', 'class' => ''],
